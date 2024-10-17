@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .thankyou-container {
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="thankyou-container">
+    <h2>Thank You for Signing Up!</h2>
+    <p>Your information:</p>
+    <div id="userInfo"></div>
+</div>
+
+<script>
+    // Function to get query parameters
+    function getQueryParams() {
+        const params = {};
+        window.location.search.substring(1).split("&").forEach(function(pair) {
+            const [key, value] = pair.split("=");
+            params[decodeURIComponent(key)] = decodeURIComponent(value.replace(/\+/g, " "));
+        });
+        return params;
+    }
+
+    // Display the user info
+    const userInfo = getQueryParams();
+    const userInfoDiv = document.getElementById('userInfo');
+    userInfoDiv.innerHTML = `
+        <p><strong>Username:</strong> ${userInfo.username}</p>
+        <p><strong>Email:</strong> ${userInfo.email}</p>
+        <p><strong>Phone:</strong> ${userInfo.phone}</p>
+        <p><strong>Address:</strong> ${userInfo.address}</p>
+        <p><strong>City:</strong> ${userInfo.city}</p>
+        <p><strong>Country:</strong> ${userInfo.country}</p>
+    `;
+</script>
+
+</body>
+</html>
